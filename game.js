@@ -36,7 +36,7 @@ function preload(){
 let contol,player;
 let cursors;
 function create(){
-    this.physics.world.createDebugGraphic();
+  //  this.physics.world.createDebugGraphic();
 
     let ground = this.physics.add.staticGroup();
    const fastg = ground.create(400,280,"ground");
