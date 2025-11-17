@@ -1,28 +1,29 @@
 let config = {
     type: Phaser.AUTO,
-    width: 800,        // virtual width
-    height: 600,
-    scale :{
-        mode: Phaser.Scale.FIT,     // screen এ fit হবে
-        autoCenter: Phaser.Scale.CENTER_BOTH, // মাঝখানে থাকবে
-        parent: "game-container",   // div ID (চাইলে বাদও দিতে পারো)
-        width: 800,
-        height: 600
-    },
-    
+    parent: 'game-container',
    
-   backgroundColor: '#ABB2B8',
+    scale: {
+        mode: Phaser.Scale.RESIZE,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+       
+         width : window.innerWidth,
+ height :window.innerHeight,
+        
+       
+        
+        fullscreenTarget: 'game-container'
+    },
+    backgroundColor: '#ABB2B8',
     scene: {
         preload: preload,
         create: create,
         update: update
     },
-
-
-     physics: {
+    physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 1200 }
+            gravity: { y: 1200 },
+            debug: false
         }
     }
 };
@@ -38,22 +39,24 @@ let cursors;
 function create(){
   //  this.physics.world.createDebugGraphic();
 
-    let ground = this.physics.add.staticGroup();
-   const fastg = ground.create(400,280,"ground");
-   fastg.setOffset(-14,0);
-   fastg.refreshBody();
-   fastg.setSize(320,20);
-   
-   fastg.setDisplaySize(500,100);
+    let scaleFactor = Math.min(
+    this.scale.width/700 ,
+    this.scale.height/600
+);
 
-     player = this.physics.add.sprite(500,100,"hero",0);
-     player.refreshBody();
-    player.setDisplaySize(100,100);
-    player.setSize(100,100);
-    player.setOffset(170,150);
-   
 
-    this.physics.add.collider(player, ground);
+    const test = this.physics.add.staticGroup();
+    const ground = test.create(200, 600, 'ground');
+    ground.setDisplaySize(500 * scaleFactor,150* scaleFactor);
+    ground.refreshBody();
+    
+    ground.setSize (300*scaleFactor,30*scaleFactor);
+    
+    player = this.physics.add.sprite(200, 300, 'hero');
+    player.setDisplaySize(300* scaleFactor,300* scaleFactor);
+    player.setSize(500* scaleFactor, 100* scaleFactor);
+    
+this.physics.add.collider(player, ground);
 
     contol = this.input.keyboard.createCursorKeys();
    
