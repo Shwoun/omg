@@ -6,8 +6,8 @@ let config = {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
        
-         width : 720,
- height :1280,
+         width :1280,
+ height :720,
         
        
         
@@ -43,7 +43,9 @@ function create(){
     this.scale.width/700 ,
     this.scale.height/600
 );
-screen.orientation.lock('landscape').catch(()=>{});
+if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock("landscape").catch(() => {});
+}
 
     const test = this.physics.add.staticGroup();
     const ground = test.create(200, 600, 'ground');
