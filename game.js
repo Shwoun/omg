@@ -3,9 +3,10 @@ let config = {
     parent: 'game-container',
    
     scale: {
-        mode: Phaser.Scale.FIT,
+        mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-       
+       orientation: Phaser.Scale.Orientation.LANDSCAPE,
+         fullscreenTarget: 'game-container',
          width :1280,
  height :720,
         
@@ -43,9 +44,12 @@ function create(){
     this.scale.width/700 ,
     this.scale.height/600
 );
-if (screen.orientation && screen.orientation.lock) {
-    screen.orientation.lock("landscape").catch(() => {});
-}
+ if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock("landscape-primary").catch(() => {
+            console.warn("Orientation lock failed");
+        });
+    }
+document.body.style.margin = 0;
 
     const test = this.physics.add.staticGroup();
     const ground = test.create(200, 600, 'ground');
