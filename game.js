@@ -6,8 +6,8 @@ let config = {
         mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
        
-         width : window.innerWidth,
- height :window.innerHeight,
+         width : 720,
+ height :1280,
         
        
         
@@ -57,7 +57,7 @@ function create(){
     player.setSize(500* scaleFactor, 100* scaleFactor);
     
 this.physics.add.collider(player, ground);
-
+this.cameras.main.startFollow(player);
     contol = this.input.keyboard.createCursorKeys();
    
 }
