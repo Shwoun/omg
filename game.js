@@ -43,7 +43,7 @@ function create(){
     this.scale.width/700 ,
     this.scale.height/600
 );
-
+screen.orientation.lock('landscape').catch(()=>{});
 
     const test = this.physics.add.staticGroup();
     const ground = test.create(200, 600, 'ground');
