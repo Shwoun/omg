@@ -3,11 +3,11 @@ let config = {
     parent: 'game-container',
    
     scale: {
-        mode: Phaser.Scale.RESIZE,
+    mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
        
-         width : window.innerWidth,
-         height :window.innerHeight,
+         width : 1860,
+         height :860,
          fullscreenTarget: 'game-container',
          
     },
@@ -42,8 +42,8 @@ function create() {
     this.physics.world.createDebugGraphic();
 
     let scaleFactor = Math.min(
-    this.scale.width/460 ,
-    this.scale.height/800
+    this.scale.width/1860 ,
+    this.scale.height/860
 );
 
 
@@ -71,17 +71,17 @@ function create() {
     ground3.setOffset(315*scaleFactor,145*scaleFactor);
 
 
-    player = this.physics.add.sprite(70*scaleFactor, 700*scaleFactor, 'hero');
+    player = this.physics.add.sprite(70*scaleFactor, 600*scaleFactor, 'hero');
     player.setDisplaySize(300* scaleFactor,300* scaleFactor);
-    player.setSize(170* scaleFactor, 170* scaleFactor);
-    player.setOffset(320* scaleFactor, 290* scaleFactor);
+    player.setSize(100* scaleFactor, 100* scaleFactor);
+    player.setOffset(170* scaleFactor, 150* scaleFactor);
     
  
     this.physics.add.collider(player, test);
 
  this.input.on("pointerdown", () => {
         if (player.body.touching.down) {
-            player.setVelocityY(-500);
+            player.setVelocityY(-800);
         }
     });
 
@@ -94,14 +94,14 @@ function update() {
     
 
     if (control.left.isDown) {
-        player.setVelocityX(-260);
+        player.setVelocityX(-360);
     } else if (control.right.isDown) {
-        player.setVelocityX(260);
+        player.setVelocityX(300);
     } else {
         player.setVelocityX(0);
     }
 
     if (control.up.isDown && player.body.touching.down) {
-        player.setVelocityY(-500);
+        player.setVelocityY(-800);
     }
 }
