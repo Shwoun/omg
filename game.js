@@ -98,7 +98,7 @@ function update() {
     } else if (control.right.isDown) {
         player.setVelocityX(300);
     } else {
-        player.setVelocityX(0);
+        player.setVelocityX(300);
     }
 
     if (control.up.isDown && player.body.touching.down) {
